@@ -122,7 +122,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:onClick="btn1Press"
+            android:onClick="numPress"
             android:padding="5dp"
             android:text="@string/_1"
             tools:ignore="ButtonStyle" />
@@ -132,7 +132,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:onClick="btn1Press"
+            android:onClick="numPress"
             android:text="@string/_2"
             tools:ignore="ButtonStyle" />
 
@@ -141,7 +141,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:onClick="btn1Press"
+            android:onClick="numPress"
             android:text="@string/_3"
             tools:ignore="ButtonStyle" />
 
@@ -150,7 +150,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:onClick="btn1Press"
+            android:onClick="numPress"
             android:text="@string/add"
             tools:ignore="ButtonStyle" />
     </LinearLayout>
@@ -166,7 +166,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="2"
-            android:onClick="btn1Press"
+            android:onClick="numPress"
             android:text="@string/_0"
             tools:ignore="ButtonStyle" />
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
 
 private var TVInput: TextView? = null
 
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun numPress(view: View) {}
+    fun numPress(view: View) {
+        TVInput?.append((view as Button).text)
+    }
 
     fun btn1Press(view: View) {
         val btn1: Button = findViewById(R.id.btn1)
