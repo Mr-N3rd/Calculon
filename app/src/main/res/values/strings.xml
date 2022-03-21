@@ -16,4 +16,6 @@
     <string name="_0">0</string>
     <string name="decimal">.</string>
     <string name="equalz">=</string>
+    <string name="clr">CLR</string>
+    <string name="MinusButton">-</string>
 </resources>
