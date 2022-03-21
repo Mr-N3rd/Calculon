@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import org.w3c.dom.Text
+import java.lang.ArithmeticException
 
 private var TVInput: TextView? = null
 
@@ -17,21 +18,24 @@ class MainActivity : AppCompatActivity() {
         TVInput = findViewById(R.id.textView)
     }
 
-    var lastNum: Boolean = true
-    var lastOperator = false
-    var lastDec: Boolean = false
+    private var lastNum: Boolean = true
 
-    private fun isOperatorAdded(value: String) : Boolean{
-        return if(value.startsWith("-")){
+    //    private var lastOperator = false
+    private var lastDec: Boolean = false
+
+    private fun isOperatorAdded(value: String): Boolean {
+        return if (value.startsWith("-")) {
             false
         } else {
-            value.contains("/") || value.contains("*")||value.contains("-")||value.contains("+")
+            value.contains("/") || value.contains("*") || value.contains("-") || value.contains("+")
         }
     }
 
     fun numPress(view: View) {
         TVInput?.append((view as Button).text)
+        lastNum = true
     }
+
 
     fun dotPress(view: View) {
         if (!lastDec) {
@@ -41,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "LastDec Pressed", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     fun operPress(view: View) {
         TVInput?.text?.let {
@@ -52,15 +57,50 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     fun clrPress(view: View) {
         TVInput?.text = ""
         lastDec = false
-        lastOperator = false
+//        lastOperator = false
 
     }
 
     fun totalPress(view: View) {
-        var equation = TVInput
+
+        if (lastNum) {
+            var tvValue = TVInput?.text.toString()
+            var prefix = ""
+
+            try {
+
+                //Allows for negative Numbers
+                if(tvValue.startsWith("-")){
+                    prefix="-"
+                    tvValue = tvValue.substring(1)
+                }
+                // splits the calculation into a pair of strings delimiting for -
+                // handles mathematical equations for subtraction
+                if (tvValue.contains("-")){
+
+                    val splitVal = tvValue.split("-")
+                    var one = splitVal[0]
+                    var two = splitVal[1]
+
+                    // Handles the mathematics of negative numbers.
+                    if (prefix.isNotEmpty()){
+                        one = prefix + one
+                    }
+
+                    TVInput?.text = (one.toDouble() - two.toDouble()).toString()
+                }
+            } catch (e: ArithmeticException) {
+                e.printStackTrace()
+            }
+
+
+
+        }
+
     }
 
 
