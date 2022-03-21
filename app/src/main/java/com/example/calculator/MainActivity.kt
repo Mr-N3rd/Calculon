@@ -15,15 +15,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         TVInput = findViewById(R.id.textView)
-
-
     }
 
-    val lastNum: Boolean = true
+    var lastNum: Boolean = true
     var lastOperator = false
     var lastDec: Boolean = false
 
-
+    private fun isOperatorAdded(value: String) : Boolean{
+        return if(value.startsWith("-")){
+            false
+        } else {
+            value.contains("/") || value.contains("*")||value.contains("-")||value.contains("+")
+        }
+    }
 
     fun numPress(view: View) {
         TVInput?.append((view as Button).text)
@@ -39,14 +43,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun operPress(view: View) {
-        if () {
-            TVInput?.append((view as Button).text)
-            lastDec = false
-            lastOperator = true
-        } else {
-            Toast.makeText(this, "Operator already exists", Toast.LENGTH_SHORT).show()
+        TVInput?.text?.let{
+            if(lastNum && !isOperatorAdded(it.toString())){
+                TVInput?.append((view as Button).text)
+                lastNum = false
+                lastDec = false
+            }
         }
-    }
+
 
     fun clrPress(view: View) {
         TVInput?.text = ""
@@ -55,57 +59,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun divPress(view: View) {
-        if (!lastOperator) {
-            TVInput?.append((view as Button).text)
-        }
-    }
-
     fun totalPress(view: View) {
         var equation = TVInput
     }
-//
-//    fun btn1Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
-//
-//    fun btn2Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
-//
-//    fun btn3Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
-//
-//    fun btn4Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
-//
-//    fun btn5Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
-//
-//    fun btn6Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
-//
-//    fun btn7Press(view: View) {
-//        val btn1: Button = findViewById(R.id.btn1)
-//        Toast.makeText(this, "Button Pressed.", Toast.LENGTH_SHORT).show()
-//        TVInput?.append(btn1.toString())
-//    }
+    }
 
 }
 
