@@ -43,14 +43,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun operPress(view: View) {
-        TVInput?.text?.let{
-            if(lastNum && !isOperatorAdded(it.toString())){
+        TVInput?.text?.let {
+            if (lastNum && !isOperatorAdded(it.toString())) {
                 TVInput?.append((view as Button).text)
                 lastNum = false
                 lastDec = false
             }
         }
-
+    }
 
     fun clrPress(view: View) {
         TVInput?.text = ""
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     fun totalPress(view: View) {
         var equation = TVInput
     }
-    }
+
 
 }
 
