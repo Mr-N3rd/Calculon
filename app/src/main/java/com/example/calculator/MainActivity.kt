@@ -1,13 +1,10 @@
 package com.example.calculator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import org.w3c.dom.Text
-import java.lang.ArithmeticException
+import androidx.appcompat.app.AppCompatActivity
 
 private var TVInput: TextView? = null
 
@@ -18,35 +15,60 @@ class MainActivity : AppCompatActivity() {
         TVInput = findViewById(R.id.textView)
     }
 
+<<<<<<< HEAD
     private var lastNum: Boolean = true
     private var firstNum: Boolean = true
     private var lastEqu: Boolean = false
 
     //    private var lastOperator = false
+=======
+    private var lastNum: Boolean = false
+>>>>>>> fe1cdec266ffbf1f80c7cfc90d6ac9309c6cab85
     private var lastDec: Boolean = false
 
-    private fun isOperatorAdded(value: String): Boolean {
-        return if (value.startsWith("-")) {
-            false
-        } else {
-            value.contains("/") || value.contains("*") || value.contains("-") || value.contains("+")
-        }
-    }
 
+<<<<<<< HEAD
+=======
+    fun numPress(view: View) {
+        TVInput?.append((view as Button).text)
+        lastNum = true
+        lastDec = false
+    }
+>>>>>>> fe1cdec266ffbf1f80c7cfc90d6ac9309c6cab85
 
     fun dotPress(view: View) {
-        if (!lastDec) {
-            TVInput?.append((view as Button).text)
-            lastDec = true
-        } else {
-            Toast.makeText(this, "LastDec Pressed", Toast.LENGTH_SHORT).show()
+        if (lastNum && !lastDec) { // Indicates that a decimal was pressed -- If decimal press check is not true
+            TVInput?.append((view as Button).text) // Takes the button Text as a text view and appends the contents
+            lastDec =
+                true // sets the decimal counter state to true until a operator or equals is pressed
+            lastNum = false
         }
     }
 
+    fun clrPress(view: View) {
+        TVInput?.text = ""
+        lastDec = false
+        lastNum = false
+
+    }
+
+    private fun isOperatorAdded(value: String): Boolean { // adds an operator, first checks if minus as minus can be used for negative integers.
+        return if (value.startsWith("-")) {
+            //returns the value if the value starts with -.
+            false
+        } else {
+            value.contains("/")
+                    || value.contains("*")
+                    || value.contains("-")
+                    || value.contains("+")
+        }
+    }
 
     fun operPress(view: View) {
         TVInput?.text?.let {
-            if (lastNum && !isOperatorAdded(it.toString())) {
+            // using let, will tell you what the context for it is in this block
+
+            if (lastNum && !isOperatorAdded(it.toString())) { // Checks whether or not there is a prior operator.
                 TVInput?.append((view as Button).text)
                 lastNum = false
                 lastDec = false
@@ -55,6 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+<<<<<<< HEAD
     fun clrPress(view: View) {
         TVInput?.text = ""
         lastDec = false
@@ -72,14 +95,14 @@ class MainActivity : AppCompatActivity() {
         lastNum = true
     }
 
+=======
+>>>>>>> fe1cdec266ffbf1f80c7cfc90d6ac9309c6cab85
     fun totalPress(view: View) {
-
         if (lastNum) {
             var tvValue = TVInput?.text.toString()
             var prefix = ""
 
             try {
-
                 //Allows for negative Numbers
                 if (tvValue.startsWith("-")) {
                     prefix = "-"
@@ -88,6 +111,10 @@ class MainActivity : AppCompatActivity() {
                 // splits the calculation into a pair of strings delimiting for -
                 // handles mathematical equations for subtraction
                 if (tvValue.contains("-")) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe1cdec266ffbf1f80c7cfc90d6ac9309c6cab85
                     val splitVal = tvValue.split("-")
                     var one = splitVal[0]
                     var two = splitVal[1]
@@ -101,13 +128,13 @@ class MainActivity : AppCompatActivity() {
             } catch (e: ArithmeticException) {
                 e.printStackTrace()
             }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fe1cdec266ffbf1f80c7cfc90d6ac9309c6cab85
         }
-
     }
-
-
 }
 
 
