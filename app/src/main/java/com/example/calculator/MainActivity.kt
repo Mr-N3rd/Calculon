@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var lastNum: Boolean = true
+    private var firstNum: Boolean = true
+    private var lastEqu: Boolean = false
 
     //    private var lastOperator = false
     private var lastDec: Boolean = false
@@ -29,11 +31,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             value.contains("/") || value.contains("*") || value.contains("-") || value.contains("+")
         }
-    }
-
-    fun numPress(view: View) {
-        TVInput?.append((view as Button).text)
-        lastNum = true
     }
 
 
@@ -65,6 +62,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun numPress(view: View) {
+        if (firstNum||lastEqu) {
+            TVInput?.text = ""
+            firstNum = false
+        }
+
+        TVInput?.append((view as Button).text)
+        lastNum = true
+    }
+
     fun totalPress(view: View) {
 
         if (lastNum) {
@@ -74,20 +81,18 @@ class MainActivity : AppCompatActivity() {
             try {
 
                 //Allows for negative Numbers
-                if(tvValue.startsWith("-")){
-                    prefix="-"
+                if (tvValue.startsWith("-")) {
+                    prefix = "-"
                     tvValue = tvValue.substring(1)
                 }
                 // splits the calculation into a pair of strings delimiting for -
                 // handles mathematical equations for subtraction
-                if (tvValue.contains("-")){
-
+                if (tvValue.contains("-")) {
                     val splitVal = tvValue.split("-")
                     var one = splitVal[0]
                     var two = splitVal[1]
-
                     // Handles the mathematics of negative numbers.
-                    if (prefix.isNotEmpty()){
+                    if (prefix.isNotEmpty()) {
                         one = prefix + one
                     }
 
@@ -96,7 +101,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e: ArithmeticException) {
                 e.printStackTrace()
             }
-
 
 
         }
