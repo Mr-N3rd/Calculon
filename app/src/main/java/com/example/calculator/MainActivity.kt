@@ -15,9 +15,8 @@ class MainActivity : AppCompatActivity() {
         TVInput = findViewById(R.id.textView)
     }
 
-    private var lastNum: Boolean = false
+    private var lastNum: Boolean = true
     private var lastDec: Boolean = false
-
 
     fun numPress(view: View) {
         TVInput?.append((view as Button).text)
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     fun clrPress(view: View) {
         TVInput?.text = ""
         lastDec = false
-        lastNum = false
+        lastNum = true
 
     }
 
